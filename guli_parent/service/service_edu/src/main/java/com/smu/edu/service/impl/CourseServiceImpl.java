@@ -113,6 +113,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements
         if (!StringUtils.isEmpty(courseQuery.getSubjectId())){
             wrapper.eq("subject_id",courseQuery.getSubjectId());
         }
+        if (!StringUtils.isEmpty(courseQuery.getStatus()) && "Normal".equals(courseQuery.getStatus())) {
+            wrapper.eq("status",courseQuery.getStatus());
+        }else if (!StringUtils.isEmpty(courseQuery.getStatus()) && "Draft".equals(courseQuery.getStatus())){
+            wrapper.eq("status",courseQuery.getStatus());
+        }
+
         if (!StringUtils.isEmpty(courseQuery.getBuyCountSort()) && "true".equals(courseQuery.getBuyCountSort())) {
             wrapper.orderByDesc("buy_count");
         }else if (!StringUtils.isEmpty(courseQuery.getBuyCountSort()) && "false".equals(courseQuery.getBuyCountSort())){
